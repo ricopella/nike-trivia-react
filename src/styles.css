@@ -66,3 +66,10 @@ button.introButton {
   width: 100px;
   height: 30px;
 }
+
+.answersWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  align-self: center;
+  justify-self: center;
+}
