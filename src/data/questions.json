@@ -1,0 +1,62 @@
+[
+  {
+    "question": "When was the first Air Max made?",
+    "answers": ["2000", "1987", "1995", "1988"],
+    "correct": 1
+  },
+  {
+    "question": "Nike paid design student, Carolyn Davison, how much for their Swoosh Logo?",
+    "answers": ["$1000", "$13", "$100", "$35"],
+    "correct": 3
+  },
+  {
+    "question": "What was the first clothing brand to partner with Nike?",
+    "answers": ["Patta", "Undefeated", "Stussy", "Diamond Supply Co."],
+    "correct": 2
+  },
+  {
+    "question": "Who was Nike's first professional athlete endorser?",
+    "answers": [
+      "John McEnroe",
+      "Michael Jordan",
+      "Ilie Nastase",
+      "Steve Prefontaine"
+    ],
+    "correct": 2
+  },
+  {
+    "questions": "When was the first Air Force 1 made?",
+    "answers": ["1982", "1983", "1984", "1985"],
+    "correct": 0
+  },
+  {
+    "question": "Who designed the Air Max technology?",
+    "answers": [
+      "Phil Knight",
+      "Bill Bowerman",
+      "Tinker Hatfield",
+      "Hidefumi Hommyo"
+    ],
+    "correct": 2
+  },
+  {
+    "questin": "When was the first Air Jordan 1's released to the public?",
+    "answers": ["2000", "1987", "1995", "1985"],
+    "correct": 3
+  },
+  {
+    "question": "Nike's first sneaker design goes under what name today?",
+    "answers": ["Air Max 1", " Cortez", "Structure Triax", "Air Force 1"],
+    "correct": 1
+  },
+  {
+    "question": "Which state was Nike's first retail space was opened in?",
+    "answers": ["Oregon", "New York", "California", "Florida"],
+    "correct": 2
+  },
+  {
+    "questions": "Nike was originally a distribution company for which brand?",
+    "answers": ["Adidas", "New Balance", "Saucony", "Onitsuka Tiger"],
+    "correct": 3
+  }
+]

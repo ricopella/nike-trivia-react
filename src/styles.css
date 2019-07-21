@@ -1,0 +1,68 @@
+body {
+  background-image: url("https://avante.biz/wp-content/uploads/Air-Max-Wallpapers/Air-Max-Wallpapers-022.jpg");
+  font-family: "Anton", sans-serif;
+  letter-spacing: 2px;
+  height: 100vh;
+  width: 100vw;
+  margin: 0px 0px;
+  padding: 0px 0px;
+  display: grid;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.cardContainer {
+  display: grid;
+  width: 400px;
+  height: 200px;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/8b/24/96/8b24967081f4a3bf8be2e86190afe600--nike-wallpaper-iphone-nike-logo.jpg");
+  background-repeat: no-repeat;
+  /* margin: 0 auto; */
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+h1.introHeading {
+  font-size: 60px;
+  color: orange;
+}
+
+.introLabel {
+  font-size: 10px;
+  font-style: italic;
+  align-self: center;
+  justify-self: center;
+}
+
+button.introButton {
+  align-self: center;
+  justify-self: center;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100px;
+  height: 30px;
+}
