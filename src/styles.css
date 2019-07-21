@@ -67,6 +67,10 @@ button.introButton {
   height: 30px;
 }
 
+button.selected {
+  background-color: red;
+}
+
 .answersWrapper {
   display: grid;
   grid-template-columns: repeat(4, max-content);

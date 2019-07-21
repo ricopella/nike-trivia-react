@@ -25,7 +25,7 @@
     "correct": 2
   },
   {
-    "questions": "When was the first Air Force 1 made?",
+    "question": "When was the first Air Force 1 made?",
     "answers": ["1982", "1983", "1984", "1985"],
     "correct": 0
   },
@@ -40,7 +40,7 @@
     "correct": 2
   },
   {
-    "questin": "When was the first Air Jordan 1's released to the public?",
+    "question": "When was the first Air Jordan 1's released to the public?",
     "answers": ["2000", "1987", "1995", "1985"],
     "correct": 3
   },
@@ -55,7 +55,7 @@
     "correct": 2
   },
   {
-    "questions": "Nike was originally a distribution company for which brand?",
+    "question": "Nike was originally a distribution company for which brand?",
     "answers": ["Adidas", "New Balance", "Saucony", "Onitsuka Tiger"],
     "correct": 3
   }
