@@ -77,3 +77,61 @@ button.selected {
   align-self: center;
   justify-self: center;
 }
+
+.gameContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-column-gap: 40px;
+}
+
+.shoeBoxContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content);
+  justify-items: center;
+}
+
+.shoeBoxTop {
+  width: 200px;
+  height: 30px;
+  border: 4px solid black;
+  background-color: #ff6600;
+}
+
+.shoeBoxBottom {
+  width: 185px;
+  height: 50px;
+  background-color: #ff6600;
+  border: 4px solid black;
+  border-top: none;
+  display: grid;
+  grid-template-columns: max-content;
+  grid-template-rows: 10px max-content;
+  position: relative;
+}
+
+.shoeBoxShadow {
+  width: 185px;
+  height: 10px;
+  background-color: #993d00;
+  opacity: 0.5;
+  z-index: 100;
+}
+
+.shoeBoxImg {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: -62px;
+  left: 25px;
+}
+
+.shoeBoxQuestionNumber {
+  font-size: 2.5rem;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-shadow: 3px 3px #993d00;
+}

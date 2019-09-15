@@ -9,11 +9,11 @@ const GameContainer = () => {
 
   return (
     <div>
-      {gameIsStarted ? (
-        <QuestionPage />
-      ) : (
+      {/* {gameIsStarted ? ( */}
+      <QuestionPage />
+      {/* ) : (
         <Welcome setGameStatus={setGameStatus} />
-      )}
+      )} */}
     </div>
   );
 };

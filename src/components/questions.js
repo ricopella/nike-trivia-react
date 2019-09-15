@@ -3,6 +3,7 @@ import questions from "../data/questions";
 import Card from "./card";
 import createPlayerAnswerCache from "../utils/createPlayerAnswerCache";
 import sumPlayerScore from "../utils/sumPlayerScore";
+import ShoeBox from "../components/shoebox";
 import "../styles.css";
 
 const QuestionPage = () => {
@@ -40,30 +41,37 @@ const QuestionPage = () => {
   };
 
   return (
-    <Card>
-      <div className="questionWrapper">
-        {questions[currentQuestionIndex] ? (
-          <>
-            <h3>{questions[currentQuestionIndex].question}</h3>
-            <div className="answersWrapper">
-              {questions[currentQuestionIndex].answers.map((y, i) => (
-                <button
-                  onClick={e => setSelectedAnswer(e, i)}
-                  className={`answer ${
-                    currentSelectedAnswer === i ? "selected" : ""
-                  }`}
-                >
-                  {y}
-                </button>
-              ))}
-            </div>
-            <button onClick={e => setQuestionIndex(e)}>Next Question</button>
-          </>
-        ) : (
-          <div>Final Score: {finalScore}</div>
-        )}
+    <div className="gameContainer">
+      <div className="questionsQueueContainer">
+        {questions.map((x, i) => (
+          <ShoeBox number={i + 1} />
+        ))}
       </div>
-    </Card>
+      <Card>
+        <div className="questionWrapper">
+          {questions[currentQuestionIndex] ? (
+            <>
+              <h3>{questions[currentQuestionIndex].question}</h3>
+              <div className="answersWrapper">
+                {questions[currentQuestionIndex].answers.map((y, i) => (
+                  <button
+                    onClick={e => setSelectedAnswer(e, i)}
+                    className={`answer ${
+                      currentSelectedAnswer === i ? "selected" : ""
+                    }`}
+                  >
+                    {y}
+                  </button>
+                ))}
+              </div>
+              <button onClick={e => setQuestionIndex(e)}>Next Question</button>
+            </>
+          ) : (
+            <div>Final Score: {finalScore}</div>
+          )}
+        </div>
+      </Card>
+    </div>
   );
 };
 
