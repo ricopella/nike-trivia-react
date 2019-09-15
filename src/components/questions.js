@@ -40,12 +40,23 @@ const QuestionPage = () => {
     setCurrentSelectedAnswer(i);
   };
 
+  const updateCurrentQuestions = index => {
+    setCurrentQuestionIndex(index);
+  };
+
   return (
     <div className="gameContainer">
       <div className="questionsQueueContainer">
-        {questions.map((x, i) => (
-          <ShoeBox number={i + 1} />
-        ))}
+        {questions
+          .filter((x, i) => i < 5)
+          .map((x, i) => (
+            <ShoeBox
+              number={i + 1}
+              selected={currentQuestionIndex === i}
+              handleClick={updateCurrentQuestions}
+              index={i}
+            />
+          ))}
       </div>
       <Card>
         <div className="questionWrapper">
@@ -71,6 +82,18 @@ const QuestionPage = () => {
           )}
         </div>
       </Card>
+      <div className="questionsQueueContainer">
+        {questions
+          .filter((x, i) => i >= 5)
+          .map((x, i) => (
+            <ShoeBox
+              number={i + 1 + 5}
+              selected={currentQuestionIndex === i + 5}
+              index={i + 5}
+              handleClick={updateCurrentQuestions}
+            />
+          ))}
+      </div>
     </div>
   );
 };
