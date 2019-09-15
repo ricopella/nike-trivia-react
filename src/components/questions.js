@@ -4,6 +4,7 @@ import Card from "./card";
 import createPlayerAnswerCache from "../utils/createPlayerAnswerCache";
 import sumPlayerScore from "../utils/sumPlayerScore";
 import ShoeBox from "../components/shoebox";
+import ShoeboxLabel from "../components/shoeLabel";
 import "../styles.css";
 
 const QuestionPage = () => {
@@ -61,22 +62,12 @@ const QuestionPage = () => {
       <Card>
         <div className="questionWrapper">
           {questions[currentQuestionIndex] ? (
-            <>
-              <h3>{questions[currentQuestionIndex].question}</h3>
-              <div className="answersWrapper">
-                {questions[currentQuestionIndex].answers.map((y, i) => (
-                  <button
-                    onClick={e => setSelectedAnswer(e, i)}
-                    className={`answer ${
-                      currentSelectedAnswer === i ? "selected" : ""
-                    }`}
-                  >
-                    {y}
-                  </button>
-                ))}
-              </div>
-              <button onClick={e => setQuestionIndex(e)}>Next Question</button>
-            </>
+            <ShoeboxLabel
+              label={questions[currentQuestionIndex]}
+              setSelectedAnswer={setSelectedAnswer}
+              setQuestionIndex={setQuestionIndex}
+              currentSelectedAnswer={currentSelectedAnswer}
+            />
           ) : (
             <div>Final Score: {finalScore}</div>
           )}
