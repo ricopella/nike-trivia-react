@@ -67,6 +67,7 @@ const QuestionPage = () => {
               setSelectedAnswer={setSelectedAnswer}
               setQuestionIndex={setQuestionIndex}
               currentSelectedAnswer={currentSelectedAnswer}
+              currentQuestionIndex={currentQuestionIndex}
             />
           ) : (
             <div>Final Score: {finalScore}</div>

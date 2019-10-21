@@ -5,7 +5,8 @@ const ShoeboxLabel = ({
   label,
   setSelectedAnswer,
   setQuestionIndex,
-  currentSelectedAnswer
+  currentSelectedAnswer,
+  currentQuestionIndex
 }) => {
   return (
     <div className="shoeBoxLabelContainer">
@@ -14,20 +15,33 @@ const ShoeboxLabel = ({
         <Barcode value="AIR MAX 1 PRM" height={30} width={1} />
       </div>
       <div className="shoeBoxLabelContentWrapper">
-        <h3>{label.question}</h3>
-        <div className="answersWrapper">
-          {label.answers.map((y, i) => (
-            <button
-              onClick={e => setSelectedAnswer(e, i)}
-              className={`answer ${
-                currentSelectedAnswer === i ? "selected" : ""
-              }`}
-            >
-              {y}
-            </button>
-          ))}
+        <div className="shoeBoxLabelQuestion">{label.question}</div>
+        <div className="showBoxLabelSecondRow">
+          <div className="shoeBoxLabelQuestionNumber">
+            {currentQuestionIndex + 1}.0
+          </div>
+          <div className="answersWrapper">
+            {label.answers.map((y, i) => (
+              <div className="questionRow">
+                {i === 0 ? `UK` : i === 1 ? `BR` : i === 2 ? `CM` : `EUR`}:
+                <button
+                  onClick={e => setSelectedAnswer(e, i)}
+                  className={`answer ${
+                    currentSelectedAnswer === i ? "selected" : ""
+                  } grow`}
+                >
+                  {y}
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-        <button onClick={e => setQuestionIndex(e)}>Next Question</button>
+        <div className="nextQuestionWrapper">
+          <div className="shoeCode">508214 001</div>
+          <div className="nextQuestion grow" onClick={e => setQuestionIndex(e)}>
+            Next Question
+          </div>
+        </div>
       </div>
       <div className="shoeBoxPriceWrapper">
         <div className="shoeBoxPriceText">Suggested Retail: $199.99</div>

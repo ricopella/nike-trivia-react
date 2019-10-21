@@ -21,7 +21,7 @@ body {
 
 .cardContainer {
   display: grid;
-  width: 450px;
+  width: 650px;
   height: 200px;
   background-color: white;
   border-radius: 5px;
@@ -40,6 +40,13 @@ h1.introHeading {
   font-style: italic;
   align-self: center;
   justify-self: center;
+}
+
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.2);
 }
 
 button.introButton {
@@ -67,13 +74,6 @@ button.introButton {
 
 button.selected {
   background-color: red;
-}
-
-.answersWrapper {
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-  align-self: center;
-  justify-self: center;
 }
 
 .gameContainer {
@@ -181,6 +181,90 @@ button.selected {
 
 .shoeBoxLabelContentWrapper {
   background-color: #ff6600;
+  padding: 0.5rem 0.5rem;
+  width: 534px;
+  display: grid;
+  grid-template-rows: max-content max-content 1fr;
+}
+
+.showBoxLabelSecondRow {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-column-gap: 2rem;
+  margin-top: 10px;
+}
+
+.shoeBoxLabelQuestion {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.shoeBoxLabelQuestionNumber {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+  grid-column: 1;
+}
+
+.answersWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-self: center;
+  justify-self: center;
+  grid-column: 2;
+  grid-row-gap: 12px;
+  grid-column-gap: 5px;
+}
+
+.questionRow {
+  color: white;
+  font-size: 0.5rem;
+  max-width: 210px;
+}
+
+.answer {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 4px;
+}
+
+.answer:hover {
+  cursor: pointer;
+  scale: 1.5;
+}
+
+.answer:focus {
+  border: none;
+  outline: 0;
+}
+
+.nextQuestionWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr max-content;
+}
+
+.shoeCode {
+  color: white;
+  font-size: 1rem;
+  align-self: end;
+  justify-items: start;
+}
+
+.nextQuestion {
+  background-color: transparent;
+  border: none;
+  align-self: end;
+  width: 130px;
+  font-size: 1rem;
+  color: white;
+}
+
+.nextQuestion:hover {
+  cursor: pointer;
 }
 
 .shoeBoxPriceWrapper {
@@ -196,6 +280,6 @@ button.selected {
   font-size: 0.5rem;
   width: 200px;
   height: 100%;
-  margin-left: 5px;
+  margin-left: 6px;
   margin-top: -20px;
 }
