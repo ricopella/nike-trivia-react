@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Welcome from "../components/welcome";
 import QuestionPage from "../components/questions";
 
@@ -7,15 +7,17 @@ const GameContainer = () => {
 
   const setGameStatus = () => setGameIsStarted(true);
 
-  return (
-    <div>
-      {/* {gameIsStarted ? ( */}
-      <QuestionPage />
-      {/* ) : (
+  const renderContent = () => (
+    <>
+      {gameIsStarted ? (
+        <QuestionPage />
+      ) : (
         <Welcome setGameStatus={setGameStatus} />
-      )} */}
-    </div>
+      )}
+    </>
   );
+
+  return <div>{renderContent()}</div>;
 };
 
 export default GameContainer;

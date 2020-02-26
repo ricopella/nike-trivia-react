@@ -15,12 +15,12 @@ const QuestionPage = () => {
     createPlayerAnswerCache()
   );
 
-  const setQuestionIndex = e => {
-    e.preventDefault();
+  const updateScore = () => {
     const answersClone = [...playerAnswersCache];
     answersClone[currentQuestionIndex] = {
-      correct:
-        questions[currentQuestionIndex].correct === currentSelectedAnswer,
+      correct: currentSelectedAnswer
+        ? questions[currentQuestionIndex].correct === currentSelectedAnswer
+        : null,
       selected: currentSelectedAnswer
     };
     setPlayersAnswersCache(answersClone);
@@ -36,56 +36,80 @@ const QuestionPage = () => {
     setCurrentSelectedAnswer(null);
   };
 
+  const setQuestionIndex = e => {
+    e.preventDefault();
+    updateScore();
+  };
+
   const setSelectedAnswer = (e, i) => {
     e.preventDefault();
     setCurrentSelectedAnswer(i);
   };
 
   const updateCurrentQuestions = index => {
+    updateScore();
     setCurrentQuestionIndex(index);
+    setCurrentSelectedAnswer(
+      playerAnswersCache[index].selected
+        ? playerAnswersCache[index].selected
+        : null
+    );
   };
+
+  // TODO: grey out already selected shoe box
+  // TODO: do not calc score if all questions have been answered
+  // TODO: add timer
 
   return (
     <div className="gameContainer">
-      <div className="questionsQueueContainer">
-        {questions
-          .filter((x, i) => i < 5)
-          .map((x, i) => (
-            <ShoeBox
-              number={i + 1}
-              selected={currentQuestionIndex === i}
-              handleClick={updateCurrentQuestions}
-              index={i}
-            />
-          ))}
-      </div>
-      <Card>
-        <div className="questionWrapper">
-          {questions[currentQuestionIndex] ? (
-            <ShoeboxLabel
-              label={questions[currentQuestionIndex]}
-              setSelectedAnswer={setSelectedAnswer}
-              setQuestionIndex={setQuestionIndex}
-              currentSelectedAnswer={currentSelectedAnswer}
-              currentQuestionIndex={currentQuestionIndex}
-            />
-          ) : (
-            <div>Final Score: {finalScore}</div>
-          )}
-        </div>
-      </Card>
-      <div className="questionsQueueContainer">
-        {questions
-          .filter((x, i) => i >= 5)
-          .map((x, i) => (
-            <ShoeBox
-              number={i + 1 + 5}
-              selected={currentQuestionIndex === i + 5}
-              index={i + 5}
-              handleClick={updateCurrentQuestions}
-            />
-          ))}
-      </div>
+      {questions[currentQuestionIndex] ? (
+        <>
+          <div className="questionsQueueContainer">
+            {questions
+              .filter((x, i) => i < 5)
+              .map((x, i) => (
+                <ShoeBox
+                  number={i + 1}
+                  selected={currentQuestionIndex === i}
+                  handleClick={updateCurrentQuestions}
+                  index={i}
+                />
+              ))}
+          </div>
+          <Card>
+            <div className="questionWrapper">
+              {questions[currentQuestionIndex] && (
+                <ShoeboxLabel
+                  label={questions[currentQuestionIndex]}
+                  setSelectedAnswer={setSelectedAnswer}
+                  setQuestionIndex={setQuestionIndex}
+                  currentSelectedAnswer={currentSelectedAnswer}
+                  currentQuestionIndex={currentQuestionIndex}
+                />
+              )}
+            </div>
+          </Card>
+          <div className="questionsQueueContainer">
+            {questions
+              .filter((x, i) => i >= 5)
+              .map((x, i) => (
+                <ShoeBox
+                  number={i + 1 + 5}
+                  selected={currentQuestionIndex === i + 5}
+                  index={i + 5}
+                  handleClick={updateCurrentQuestions}
+                />
+              ))}
+          </div>
+        </>
+      ) : (
+        <ShoeboxLabel
+          label={{ question: `Final Score:` }}
+          currentQuestionIndex={
+            !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
+          }
+        />
+      )}
     </div>
   );
 };

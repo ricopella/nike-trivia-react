@@ -1,4 +1,5 @@
 import React from "react";
+import Swoosh from "../assets/swoosh.png";
 
 const notSelected = `#ff6600`;
 const isSelected = `#e2142d`;
@@ -24,11 +25,7 @@ const ShoeBox = ({ index, number, selected, handleClick }) => (
           backgroundColor: selected ? isSelectedShadow : notSelectedShadow
         }}
       />
-      <img
-        src="https://myrealdomain.com/images/nike-swoosh-vector-2.png"
-        className="shoeBoxImg"
-        alt={"Nike Swoosh Logo"}
-      />
+      <img src={Swoosh} className="shoeBoxImg" alt={"Nike Swoosh Logo"} />
       <div className="shoeBoxQuestionNumber">{number}</div>
     </div>
   </div>

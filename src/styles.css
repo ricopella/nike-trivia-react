@@ -30,9 +30,18 @@ body {
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
+.cardContainer.welcomeCard {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, max-content);
+  align-content: center;
+  justify-items: center;
+  width: 550px;
+}
+
 h1.introHeading {
   font-size: 60px;
   color: orange;
+  margin: 0 0;
 }
 
 .introLabel {
@@ -89,6 +98,20 @@ button.selected {
   display: grid;
   grid-template-rows: repeat(5, max-content);
   grid-row-gap: 20px;
+}
+
+@media only screen and (max-width: 1139px) {
+  .gameContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, max-content);
+    grid-row-gap: 20px;
+  }
+
+  .questionsQueueContainer {
+    grid-template-columns: repeat(5, max-content);
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+  }
 }
 
 .shoeBoxContainer {
@@ -189,7 +212,7 @@ button.selected {
 
 .showBoxLabelSecondRow {
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: max-content 1fr;
   grid-column-gap: 2rem;
   margin-top: 10px;
 }
@@ -210,11 +233,11 @@ button.selected {
 .answersWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  align-self: center;
-  justify-self: center;
+  align-content: center;
   grid-column: 2;
   grid-row-gap: 12px;
   grid-column-gap: 5px;
+  width: 100%;
 }
 
 .questionRow {
