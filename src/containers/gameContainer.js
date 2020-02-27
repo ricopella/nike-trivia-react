@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { lazy, useState, Suspense } from "react";
 import Welcome from "../components/welcome";
-import QuestionPage from "../components/questions";
+
+const QuestionPage = lazy(() => import("../components/questions"));
 
 const GameContainer = () => {
   const [gameIsStarted, setGameIsStarted] = useState(false);
@@ -9,11 +10,13 @@ const GameContainer = () => {
 
   const renderContent = () => (
     <>
-      {gameIsStarted ? (
-        <QuestionPage />
-      ) : (
-        <Welcome setGameStatus={setGameStatus} />
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {gameIsStarted ? (
+          <QuestionPage />
+        ) : (
+          <Welcome setGameStatus={setGameStatus} />
+        )}
+      </Suspense>
     </>
   );
 

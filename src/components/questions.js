@@ -11,12 +11,13 @@ const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentSelectedAnswer, setCurrentSelectedAnswer] = useState(null);
   const [finalScore, setFinalScore] = useState(null);
-  const [playerAnswersCache, setPlayersAnswersCache] = useState(
+  const [playerAnswersCache, setPlayersAnswersCache] = useState(() =>
     createPlayerAnswerCache()
   );
 
-  const updateScore = () => {
+  const updateScore = async () => {
     const answersClone = [...playerAnswersCache];
+
     answersClone[currentQuestionIndex] = {
       correct: currentSelectedAnswer
         ? questions[currentQuestionIndex].correct === currentSelectedAnswer
@@ -25,20 +26,29 @@ const QuestionPage = () => {
     };
     setPlayersAnswersCache(answersClone);
 
-    const currentIndex = currentQuestionIndex + 1;
+    const answeredCount = answersClone
+      .map(question => (typeof question.selected === "number" ? 1 : 0))
+      .reduce((acc, cur) => acc + cur, 0);
 
-    if (currentIndex === 10) {
+    if (answeredCount === playerAnswersCache.length) {
       const finalScore = sumPlayerScore(playerAnswersCache);
       setFinalScore(finalScore);
     }
 
-    setCurrentQuestionIndex(currentIndex);
+    // setCurrentQuestionIndex(c => c++);
     setCurrentSelectedAnswer(null);
   };
 
   const setQuestionIndex = e => {
     e.preventDefault();
     updateScore();
+
+    setCurrentSelectedAnswer(
+      playerAnswersCache[currentQuestionIndex].selected
+        ? playerAnswersCache[currentQuestionIndex].selected
+        : null
+    );
+    setCurrentQuestionIndex(c => c + 1);
   };
 
   const setSelectedAnswer = (e, i) => {
@@ -62,7 +72,7 @@ const QuestionPage = () => {
 
   return (
     <div className="gameContainer">
-      {questions[currentQuestionIndex] ? (
+      {!finalScore ? (
         <>
           <div className="questionsQueueContainer">
             {questions
@@ -73,6 +83,7 @@ const QuestionPage = () => {
                   selected={currentQuestionIndex === i}
                   handleClick={updateCurrentQuestions}
                   index={i}
+                  key={`top_${i}`}
                 />
               ))}
           </div>
@@ -98,11 +109,14 @@ const QuestionPage = () => {
                   selected={currentQuestionIndex === i + 5}
                   index={i + 5}
                   handleClick={updateCurrentQuestions}
+                  key={`bottom_${i}`}
                 />
               ))}
           </div>
         </>
       ) : (
+        // TODO: style final score
+        // add a reset button
         <ShoeboxLabel
           label={{ question: `Final Score:` }}
           currentQuestionIndex={
