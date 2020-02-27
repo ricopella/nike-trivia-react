@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import questions from "../data/questions";
 import Card from "./card";
 import createPlayerAnswerCache from "../utils/createPlayerAnswerCache";
 import sumPlayerScore from "../utils/sumPlayerScore";
 import ShoeBox from "../components/shoebox";
 import ShoeboxLabel from "../components/shoeLabel";
 import "../styles.css";
+import setUsersScore from "../utils/setUsersScore";
+import questions from "../data/questions";
 
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -16,26 +17,19 @@ const QuestionPage = () => {
   );
 
   const updateScore = async () => {
-    const answersClone = [...playerAnswersCache];
+    const [updatedCache, answeredCount] = setUsersScore(
+      playerAnswersCache,
+      currentSelectedAnswer,
+      currentQuestionIndex
+    );
 
-    answersClone[currentQuestionIndex] = {
-      correct: currentSelectedAnswer
-        ? questions[currentQuestionIndex].correct === currentSelectedAnswer
-        : null,
-      selected: currentSelectedAnswer
-    };
-    setPlayersAnswersCache(answersClone);
-
-    const answeredCount = answersClone
-      .map(question => (typeof question.selected === "number" ? 1 : 0))
-      .reduce((acc, cur) => acc + cur, 0);
+    setPlayersAnswersCache(updatedCache);
 
     if (answeredCount === playerAnswersCache.length) {
       const finalScore = sumPlayerScore(playerAnswersCache);
       setFinalScore(finalScore);
     }
 
-    // setCurrentQuestionIndex(c => c++);
     setCurrentSelectedAnswer(null);
   };
 
@@ -67,7 +61,6 @@ const QuestionPage = () => {
   };
 
   // TODO: grey out already selected shoe box
-  // TODO: do not calc score if all questions have been answered
   // TODO: add timer
 
   return (
