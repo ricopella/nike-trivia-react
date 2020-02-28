@@ -122,6 +122,10 @@ button.selected {
   transition: all 0.2s ease-in-out;
 }
 
+.shoeBoxContainer.answered {
+  opacity: 0.9;
+}
+
 .shoeBoxContainer:hover {
   transform: scale(1.1);
   cursor: pointer;

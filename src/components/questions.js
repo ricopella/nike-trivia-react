@@ -60,7 +60,6 @@ const QuestionPage = () => {
     );
   };
 
-  // TODO: grey out already selected shoe box
   // TODO: add timer
 
   return (
@@ -77,6 +76,7 @@ const QuestionPage = () => {
                   handleClick={updateCurrentQuestions}
                   index={i}
                   key={`top_${i}`}
+                  isAnswered={playerAnswersCache[i].selected}
                 />
               ))}
           </div>
