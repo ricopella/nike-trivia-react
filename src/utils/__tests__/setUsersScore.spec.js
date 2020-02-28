@@ -43,4 +43,15 @@ describe("util - setUsersScore", () => {
     expect(updatedCache).toEqual(clonedCache);
     expect(answeredCount).toEqual(1);
   });
+
+  it("should update the second item and return count to two", () => {
+    const cache = buildDefaultPlayerCache();
+    cache[0] = { correct: true, selected: 1 };
+    const [updatedCache, answeredCount] = setUsersScore(cache, 1, 1);
+
+    const clonedCache = [...cache];
+    clonedCache[1] = { correct: false, selected: 1 };
+    expect(updatedCache).toEqual(clonedCache);
+    expect(answeredCount).toEqual(2);
+  });
 });
