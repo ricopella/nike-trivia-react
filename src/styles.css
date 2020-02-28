@@ -1,11 +1,11 @@
 body {
   background-image: url("https://avante.biz/wp-content/uploads/Air-Max-Wallpapers/Air-Max-Wallpapers-022.jpg");
   font-family: "Anton", sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   height: 100vh;
   width: 100vw;
-  margin: 0px 0px;
-  padding: 0px 0px;
+  margin: 0 0;
+  padding: 0 0;
   display: grid;
 }
 
@@ -21,13 +21,13 @@ body {
 
 .cardContainer {
   display: grid;
-  width: 650px;
-  height: 200px;
+  width: 40.625rem;
+  height: 12.5rem;
   background-color: white;
-  border-radius: 5px;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 0.3125rem;
+  -webkit-box-shadow: 0.625rem 0.625rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0.625rem 0.625rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 0.3125rem 0.3125rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
 }
 
 .cardContainer.welcomeCard {
@@ -35,17 +35,17 @@ body {
   grid-template-rows: repeat(4, max-content);
   align-content: center;
   justify-items: center;
-  width: 550px;
+  width: 34.375rem;
 }
 
 h1.introHeading {
-  font-size: 60px;
+  font-size: 3.75rem;
   color: orange;
   margin: 0 0;
 }
 
 .introLabel {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-style: italic;
   align-self: center;
   justify-self: center;
@@ -76,20 +76,20 @@ button.introButton {
   user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
-  width: 100px;
-  height: 30px;
+  border-radius: 0.25rem;
+  width: 6.25rem;
+  height: 1.875rem;
 }
 
 button.selected {
-  background-color: red;
+  background-color: #ff0000;
 }
 
 .gameContainer {
   width: 100%;
   display: grid;
   grid-template-columns: max-content 1fr max-content;
-  grid-column-gap: 80px;
+  grid-column-gap: 5rem;
   justify-items: center;
   align-items: center;
 }
@@ -97,20 +97,20 @@ button.selected {
 .questionsQueueContainer {
   display: grid;
   grid-template-rows: repeat(5, max-content);
-  grid-row-gap: 20px;
+  grid-row-gap: 1.25rem;
 }
 
 @media only screen and (max-width: 1139px) {
   .gameContainer {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, max-content);
-    grid-row-gap: 20px;
+    grid-row-gap: 1.25rem;
   }
 
   .questionsQueueContainer {
     grid-template-columns: repeat(5, max-content);
     grid-template-rows: 1fr;
-    grid-column-gap: 5px;
+    grid-column-gap: 0.3125rem;
   }
 }
 
@@ -132,11 +132,11 @@ button.selected {
 }
 
 .shoeBoxTop {
-  width: 150px;
-  height: 15px;
-  border: 4px solid black;
+  width: 9.375rem;
+  height: 0.9375rem;
+  border: 0.25rem solid black;
   background-color: #ff6600;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .shoeBoxTop.selected,
@@ -149,57 +149,57 @@ button.selected {
 }
 
 .shoeBoxBottom {
-  width: 140px;
-  height: 40px;
+  width: 8.75rem;
+  height: 2.5rem;
   background-color: #ff6600;
-  border: 4px solid black;
+  border: 0.25rem solid black;
   border-top: none;
   display: grid;
   grid-template-columns: max-content;
-  grid-template-rows: 10px max-content;
+  grid-template-rows: 0.625rem max-content;
   position: relative;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .shoeBoxShadow {
-  width: 140px;
-  height: 8px;
+  width: 8.75rem;
+  height: 0.5rem;
   background-color: #993d00;
   opacity: 0.5;
   z-index: 100;
 }
 
 .shoeBoxImg {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   position: absolute;
-  top: -35px;
-  left: 25px;
+  top: -2.1875rem;
+  left: 1.5625rem;
 }
 
 .shoeBoxQuestionNumber {
   font-size: 2rem;
   color: white;
   position: absolute;
-  bottom: 0px;
-  right: 5px;
-  text-shadow: 3px 3px #993d00;
+  bottom: 0;
+  right: 0.3125rem;
+  text-shadow: 0.1875rem 0.1875rem #993d00;
 }
 
 .shoeBoxLabelContainer {
   display: grid;
-  grid-template-columns: 72px 1fr max-content;
+  grid-template-columns: 4.5rem 1fr max-content;
   position: relative;
   height: 100%;
-  border: 3px solid white;
-  border-radius: 4px;
+  border: 0.1875rem solid white;
+  border-radius: 0.1875rem;
 }
 
 .shoeBoxBarCodeWrapper {
   position: absolute;
-  left: -65px;
-  bottom: 60px;
+  left: -4.0625rem;
+  bottom: 3.75rem;
 }
 
 .shoeBoxBarCodeWrapper {
@@ -209,7 +209,7 @@ button.selected {
 .shoeBoxLabelContentWrapper {
   background-color: #ff6600;
   padding: 0.5rem 0.5rem;
-  width: 534px;
+  width: 33.375rem;
   display: grid;
   grid-template-rows: max-content max-content 1fr;
 }
@@ -218,7 +218,7 @@ button.selected {
   display: grid;
   grid-template-columns: max-content 1fr;
   grid-column-gap: 2rem;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .shoeBoxLabelQuestion {
@@ -239,15 +239,15 @@ button.selected {
   grid-template-columns: repeat(2, 1fr);
   align-content: center;
   grid-column: 2;
-  grid-row-gap: 12px;
-  grid-column-gap: 5px;
+  grid-row-gap: 0.75rem;
+  grid-column-gap: 0.3125rem;
   width: 100%;
 }
 
 .questionRow {
   color: white;
   font-size: 0.5rem;
-  max-width: 210px;
+  max-width: 13.125rem;
 }
 
 .answer {
@@ -255,7 +255,7 @@ button.selected {
   border: none;
   font-size: 1.2rem;
   color: white;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .answer:hover {
@@ -285,7 +285,7 @@ button.selected {
   background-color: transparent;
   border: none;
   align-self: end;
-  width: 130px;
+  width: 8.125rem;
   font-size: 1rem;
   color: white;
 }
@@ -296,17 +296,17 @@ button.selected {
 
 .shoeBoxPriceWrapper {
   background-color: white;
-  width: 20px;
+  width: 1.25rem;
   height: 100%;
   position: relative;
-  border-left: 2px dashed #c4c4c4;
+  border-left: 0.125rem dashed #c4c4c4;
 }
 
 .shoeBoxPriceText {
   transform: rotate(-90deg);
   font-size: 0.5rem;
-  width: 200px;
+  width: 12.5rem;
   height: 100%;
-  margin-left: 6px;
-  margin-top: -20px;
+  margin-left: 0.375rem;
+  margin-top: -1.25rem;
 }
