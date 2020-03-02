@@ -74,9 +74,11 @@ const QuestionPage = () => {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
-  return (
-    <div className="gameWrapper">
-      {!finalScore && timeLeft !== 0 ? (
+  const renderContent = () => {
+    // If user has not answered all questions
+    // and the time has not run out, show questions
+    if (!finalScore && timeLeft !== 0) {
+      return (
         <>
           <Timer timeLeft={timeLeft} />
           <div className="gameContainer">
@@ -122,18 +124,23 @@ const QuestionPage = () => {
             </div>
           </div>
         </>
-      ) : (
+      );
+    } else {
+      return (
         // TODO: style final score
-        // add a reset button
         <ShoeboxLabel
           label={{ question: `Final Score:` }}
           currentQuestionIndex={
             !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
           }
         />
-      )}
-    </div>
-  );
+      );
+    }
+  };
+
+  // TODO: add a reset button
+  // TODO: add animation
+  return <div className="gameWrapper">{renderContent()}</div>;
 };
 
 export default QuestionPage;
