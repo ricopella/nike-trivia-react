@@ -85,6 +85,15 @@ button.selected {
   background-color: #ff0000;
 }
 
+.gameWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content);
+  justify-items: center;
+  align-content: center;
+  grid-row-gap: 2rem;
+}
+
 .gameContainer {
   width: 100%;
   display: grid;
@@ -309,4 +318,49 @@ button.selected {
   height: 100%;
   margin-left: 0.375rem;
   margin-top: -1.25rem;
+}
+
+.timerWrapper {
+  display: grid;
+  -moz-box-shadow: 0.625rem 0.625rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0.625rem 0.625rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
+  align-content: center;
+  background: orange;
+  border-radius: 0.3125rem;
+  box-shadow: 0.3125rem 0.3125rem 0.3125rem 0 rgba(0, 0, 0, 0.75);
+  color: white;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content);
+  height: 6.25rem;
+  justify-items: center;
+  padding: 1rem 1rem;
+  text-align: center;
+  width: 12.5rem;
+}
+
+.timerWrapper .timeValue {
+  font-size: 4rem;
+}
+
+.timeValue.alert {
+  color: red;
+  animation: blinkingText 0.6s infinite;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: red;
+  }
+  49% {
+    color: red;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: #red;
+  }
 }

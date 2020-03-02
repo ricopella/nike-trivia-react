@@ -7,6 +7,7 @@ import ShoeboxLabel from "../components/shoeLabel";
 import "../styles.css";
 import setUsersScore from "../utils/setUsersScore";
 import questions from "../data/questions";
+import Timer from "./timer";
 
 const TIMER_SECONDS = 60;
 
@@ -64,28 +65,21 @@ const QuestionPage = () => {
   };
 
   useEffect(() => {
-    // exit early when we reach 0
     if (!timeLeft) return;
 
-    // save intervalId to clear the interval when the
-    // component re-renders
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
 
-    // clear interval on re-render to avoid memory leaks
     return () => clearInterval(intervalId);
-    // add timeLeft as a dependency to re-rerun the effect
-    // when we update it
   }, [timeLeft]);
 
   return (
-    <div>
-      {/* TODO: style timer */}
-      <h1>{timeLeft}</h1>
-      <div className="gameContainer">
-        {!finalScore && timeLeft !== 0 ? (
-          <>
+    <div className="gameWrapper">
+      {!finalScore && timeLeft !== 0 ? (
+        <>
+          <Timer timeLeft={timeLeft} />
+          <div className="gameContainer">
             <div className="questionsQueueContainer">
               {questions
                 .filter((x, i) => i < 5)
@@ -126,18 +120,18 @@ const QuestionPage = () => {
                   />
                 ))}
             </div>
-          </>
-        ) : (
-          // TODO: style final score
-          // add a reset button
-          <ShoeboxLabel
-            label={{ question: `Final Score:` }}
-            currentQuestionIndex={
-              !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
-            }
-          />
-        )}
-      </div>
+          </div>
+        </>
+      ) : (
+        // TODO: style final score
+        // add a reset button
+        <ShoeboxLabel
+          label={{ question: `Final Score:` }}
+          currentQuestionIndex={
+            !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
+          }
+        />
+      )}
     </div>
   );
 };
