@@ -8,6 +8,7 @@ import "../styles.css";
 import setUsersScore from "../utils/setUsersScore";
 import questions from "../data/questions";
 import Timer from "./timer";
+import FinalScore from "./finalScore";
 
 const TIMER_SECONDS = 60;
 
@@ -64,8 +65,20 @@ const QuestionPage = () => {
     );
   };
 
+  const handleResetart = () => {
+    setCurrentQuestionIndex(0);
+    setCurrentSelectedAnswer(null);
+    setFinalScore(null);
+    setPlayersAnswersCache(createPlayerAnswerCache());
+    setTimeLeft(TIMER_SECONDS);
+  };
+
   useEffect(() => {
-    if (!timeLeft) return;
+    if (!timeLeft) {
+      const finalScore = sumPlayerScore(playerAnswersCache);
+      setFinalScore(finalScore);
+      return;
+    }
 
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);
@@ -119,6 +132,7 @@ const QuestionPage = () => {
                     index={i + 5}
                     handleClick={updateCurrentQuestions}
                     key={`bottom_${i}`}
+                    isAnswered={playerAnswersCache[i + 5].selected}
                   />
                 ))}
             </div>
@@ -127,19 +141,18 @@ const QuestionPage = () => {
       );
     } else {
       return (
-        // TODO: style final score
-        <ShoeboxLabel
-          label={{ question: `Final Score:` }}
-          currentQuestionIndex={
+        <FinalScore
+          score={
             !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
           }
+          restartGame={handleResetart}
         />
       );
     }
   };
 
-  // TODO: add a reset button
   // TODO: add animation
+  // TODO: on 10th question, next should finish game
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 

@@ -81,6 +81,10 @@ button.introButton {
   height: 1.875rem;
 }
 
+button.introButton.restart {
+  margin-top: 2rem;
+}
+
 button.selected {
   background-color: #ff0000;
 }
