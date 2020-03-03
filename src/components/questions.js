@@ -33,6 +33,7 @@ const QuestionPage = () => {
     if (answeredCount === playerAnswersCache.length) {
       const finalScore = sumPlayerScore(playerAnswersCache);
       setFinalScore(finalScore);
+      setTimeLeft(0);
     }
 
     setCurrentSelectedAnswer(null);
@@ -152,7 +153,6 @@ const QuestionPage = () => {
   };
 
   // TODO: add animation
-  // TODO: on 10th question, next should finish game
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 

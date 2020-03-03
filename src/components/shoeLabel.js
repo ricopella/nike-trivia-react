@@ -45,7 +45,7 @@ const ShoeboxLabel = ({
             className="nextQuestion grow"
             onClick={e => (setQuestionIndex ? setQuestionIndex(e) : null)}
           >
-            Next Question
+            {currentQuestionIndex < 9 ? "Next Question" : "FINISH"}
           </div>
         </div>
       </div>
