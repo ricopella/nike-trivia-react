@@ -3,8 +3,9 @@ import Card from "../components/card";
 
 const FinalScore = ({ restartGame, score }) => (
   <Card className="welcomeCard">
-    <h1 className="introHeading">Total Score: {score}</h1>
-    <div className="introLabel">Thanks For Playing!</div>
+    <h2 className="introHeading">Total Score</h2>
+    <h1 className="introHeading">{score} out of 10</h1>
+    <div>Thanks For Playing!</div>
     <button onClick={restartGame} className="introButton restart">
       Try Again
     </button>

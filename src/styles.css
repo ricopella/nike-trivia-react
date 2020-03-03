@@ -44,6 +44,12 @@ h1.introHeading {
   margin: 0 0;
 }
 
+h2.introHeading {
+  font-size: 1rem;
+  color: black;
+  margin: 0 0;
+}
+
 .introLabel {
   font-size: 0.625rem;
   font-style: italic;
@@ -81,8 +87,8 @@ button.introButton {
   height: 1.875rem;
 }
 
-button.introButton.restart {
-  margin-top: 2rem;
+button.restart {
+  margin-top: 1rem;
 }
 
 button.selected {
@@ -344,6 +350,7 @@ button.selected {
 
 .timerWrapper .timeValue {
   font-size: 4rem;
+  font-weight: bold;
 }
 
 .timeValue.alert {
@@ -365,6 +372,6 @@ button.selected {
     color: transparent;
   }
   100% {
-    color: #red;
+    color: red;
   }
 }

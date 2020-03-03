@@ -153,6 +153,7 @@ const QuestionPage = () => {
   };
 
   // TODO: add animation
+  // TODO: do not allow clicking FINISH if all questions not answered
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 
