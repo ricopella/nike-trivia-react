@@ -10,7 +10,8 @@ const isSelectedShadow = `#9b0d1e`;
 const ShoeBox = ({ index, number, selected, handleClick, isAnswered }) => (
   <div
     className={`shoeBoxContainer ${isAnswered ? "answered" : ""}`}
-    onClick={() => !selected && handleClick(index)}
+    onClick={() => (!selected ? handleClick(index) : null)}
+    data-testid="shoebox_container"
   >
     <div
       className="shoeBoxTop"
