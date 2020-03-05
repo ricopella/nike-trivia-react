@@ -6,7 +6,8 @@ const ShoeboxLabel = ({
   setSelectedAnswer,
   setQuestionIndex,
   currentSelectedAnswer,
-  currentQuestionIndex
+  currentQuestionIndex,
+  isLastQuestion = false
 }) => {
   return (
     <div className="shoeBoxLabelContainer">
@@ -23,7 +24,7 @@ const ShoeboxLabel = ({
           <div className="answersWrapper">
             {label.answers &&
               label.answers.map((y, i) => (
-                <div className="questionRow">
+                <div className="questionRow" key={y}>
                   {i === 0 ? `UK` : i === 1 ? `BR` : i === 2 ? `CM` : `EUR`}:
                   <button
                     onClick={e =>
@@ -42,7 +43,7 @@ const ShoeboxLabel = ({
         <div className="nextQuestionWrapper">
           <div className="shoeCode">508214 001</div>
           <div
-            className="nextQuestion grow"
+            className={`nextQuestion grow ${!isLastQuestion ? `disabled` : ""}`}
             onClick={e => (setQuestionIndex ? setQuestionIndex(e) : null)}
           >
             {currentQuestionIndex < 9 ? "Next Question" : "FINISH"}

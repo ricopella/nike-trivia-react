@@ -10,8 +10,6 @@ import questions from "../data/questions";
 import Timer from "./timer";
 import FinalScore from "./finalScore";
 
-const TIMER_SECONDS = 60;
-
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentSelectedAnswer, setCurrentSelectedAnswer] = useState(null);
@@ -19,7 +17,17 @@ const QuestionPage = () => {
   const [playerAnswersCache, setPlayersAnswersCache] = useState(() =>
     createPlayerAnswerCache()
   );
-  const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
+  const [isTimerStarted, setIsTierStarted] = useState(false);
+
+  useEffect(() => {
+    setIsTierStarted(true);
+
+    const intervalId = setInterval(() => {
+      setIsTierStarted(false);
+    }, 1000 * 60);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const updateScore = async () => {
     const [updatedCache, answeredCount] = setUsersScore(
@@ -30,10 +38,13 @@ const QuestionPage = () => {
 
     setPlayersAnswersCache(updatedCache);
 
-    if (answeredCount === playerAnswersCache.length) {
+    if (
+      answeredCount === playerAnswersCache.length ||
+      currentQuestionIndex >= playerAnswersCache.length - 1
+    ) {
       const finalScore = sumPlayerScore(playerAnswersCache);
       setFinalScore(finalScore);
-      setTimeLeft(0);
+      setIsTierStarted(false);
     }
 
     setCurrentSelectedAnswer(null);
@@ -71,30 +82,20 @@ const QuestionPage = () => {
     setCurrentSelectedAnswer(null);
     setFinalScore(null);
     setPlayersAnswersCache(createPlayerAnswerCache());
-    setTimeLeft(TIMER_SECONDS);
+    setIsTierStarted(true);
   };
-
-  useEffect(() => {
-    if (!timeLeft) {
-      const finalScore = sumPlayerScore(playerAnswersCache);
-      setFinalScore(finalScore);
-      return;
-    }
-
-    const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeLeft]);
 
   const renderContent = () => {
     // If user has not answered all questions
-    // and the time has not run out, show questions
-    if (!finalScore && timeLeft !== 0) {
+    // and the timer is running, show questions
+    if (
+      !finalScore &&
+      isTimerStarted &&
+      currentQuestionIndex < playerAnswersCache.length
+    ) {
       return (
         <>
-          <Timer timeLeft={timeLeft} />
+          {isTimerStarted ? <Timer /> : <div />}
           <div className="gameContainer">
             <div className="questionsQueueContainer">
               {questions
@@ -153,7 +154,7 @@ const QuestionPage = () => {
   };
 
   // TODO: add animation
-  // TODO: do not allow clicking FINISH if all questions not answered
+  // TODO: do not allow clicking FINISH if all questions not answered (isLastQuestion)
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 
