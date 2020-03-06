@@ -35,7 +35,7 @@ body {
   grid-template-rows: repeat(4, max-content);
   align-content: center;
   justify-items: center;
-  width: 34.375rem;
+  width: 26.375rem;
 }
 
 h1.introHeading {
@@ -311,6 +311,15 @@ button.selected {
 
 .nextQuestion:hover {
   cursor: pointer;
+}
+
+.nextQuestion.disabled {
+  color: grey;
+  pointer-events: none;
+}
+
+.nextQuestion.disabled:hover {
+  cursor: not-allowed;
 }
 
 .shoeBoxPriceWrapper {

@@ -102,26 +102,26 @@ const QuestionPage = () => {
                 .filter((x, i) => i < 5)
                 .map((x, i) => (
                   <ShoeBox
-                    number={i + 1}
-                    selected={currentQuestionIndex === i}
                     handleClick={updateCurrentQuestions}
                     index={i}
-                    key={`top_${i}`}
                     isAnswered={playerAnswersCache[i].selected}
+                    key={`top_${i}`}
+                    number={i + 1}
+                    selected={currentQuestionIndex === i}
                   />
                 ))}
             </div>
             <Card>
               <div className="questionWrapper">
-                {questions[currentQuestionIndex] && (
+                {questions[currentQuestionIndex] ? (
                   <ShoeboxLabel
-                    label={questions[currentQuestionIndex]}
-                    setSelectedAnswer={setSelectedAnswer}
-                    setQuestionIndex={setQuestionIndex}
-                    currentSelectedAnswer={currentSelectedAnswer}
                     currentQuestionIndex={currentQuestionIndex}
+                    currentSelectedAnswer={currentSelectedAnswer}
+                    label={questions[currentQuestionIndex]}
+                    setQuestionIndex={setQuestionIndex}
+                    setSelectedAnswer={setSelectedAnswer}
                   />
-                )}
+                ) : null}
               </div>
             </Card>
             <div className="questionsQueueContainer">
@@ -129,12 +129,12 @@ const QuestionPage = () => {
                 .filter((x, i) => i >= 5)
                 .map((x, i) => (
                   <ShoeBox
+                    handleClick={updateCurrentQuestions}
+                    index={i + 5}
+                    isAnswered={playerAnswersCache[i + 5].selected}
+                    key={`bottom_${i}`}
                     number={i + 1 + 5}
                     selected={currentQuestionIndex === i + 5}
-                    index={i + 5}
-                    handleClick={updateCurrentQuestions}
-                    key={`bottom_${i}`}
-                    isAnswered={playerAnswersCache[i + 5].selected}
                   />
                 ))}
             </div>
@@ -154,7 +154,6 @@ const QuestionPage = () => {
   };
 
   // TODO: add animation
-  // TODO: do not allow clicking FINISH if all questions not answered (isLastQuestion)
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 
