@@ -1,6 +1,5 @@
 import React, { lazy, useState, Suspense } from "react";
 import Welcome from "../components/welcome";
-import { motion } from "framer-motion";
 
 const QuestionPage = lazy(() => import("../components/questions"));
 
