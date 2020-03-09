@@ -9,6 +9,12 @@ import setUsersScore from "../utils/setUsersScore";
 import questions from "../data/questions";
 import Timer from "./timer";
 import FinalScore from "./finalScore";
+import { motion } from "framer-motion";
+import {
+  staggerParentVarients,
+  staggerChildLeftVarients,
+  staggerChildRightVarients
+} from "../utils/animations";
 
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -97,20 +103,25 @@ const QuestionPage = () => {
         <>
           {isTimerStarted ? <Timer /> : <div />}
           <div className="gameContainer">
-            <div className="questionsQueueContainer">
+            <motion.div
+              className="questionsQueueContainer"
+              {...staggerParentVarients}
+            >
               {questions
                 .filter((x, i) => i < 5)
                 .map((x, i) => (
-                  <ShoeBox
-                    handleClick={updateCurrentQuestions}
-                    index={i}
-                    isAnswered={playerAnswersCache[i].selected}
-                    key={`top_${i}`}
-                    number={i + 1}
-                    selected={currentQuestionIndex === i}
-                  />
+                  <motion.div variants={staggerChildLeftVarients}>
+                    <ShoeBox
+                      handleClick={updateCurrentQuestions}
+                      index={i}
+                      isAnswered={playerAnswersCache[i].selected}
+                      key={`top_${i}`}
+                      number={i + 1}
+                      selected={currentQuestionIndex === i}
+                    />
+                  </motion.div>
                 ))}
-            </div>
+            </motion.div>
             <Card>
               <div className="questionWrapper">
                 {questions[currentQuestionIndex] ? (
@@ -124,20 +135,25 @@ const QuestionPage = () => {
                 ) : null}
               </div>
             </Card>
-            <div className="questionsQueueContainer">
+            <motion.div
+              className="questionsQueueContainer"
+              {...staggerParentVarients}
+            >
               {questions
                 .filter((x, i) => i >= 5)
                 .map((x, i) => (
-                  <ShoeBox
-                    handleClick={updateCurrentQuestions}
-                    index={i + 5}
-                    isAnswered={playerAnswersCache[i + 5].selected}
-                    key={`bottom_${i}`}
-                    number={i + 1 + 5}
-                    selected={currentQuestionIndex === i + 5}
-                  />
+                  <motion.div variants={staggerChildRightVarients}>
+                    <ShoeBox
+                      handleClick={updateCurrentQuestions}
+                      index={i + 5}
+                      isAnswered={playerAnswersCache[i + 5].selected}
+                      key={`bottom_${i}`}
+                      number={i + 1 + 5}
+                      selected={currentQuestionIndex === i + 5}
+                    />
+                  </motion.div>
                 ))}
-            </div>
+            </motion.div>
           </div>
         </>
       );
