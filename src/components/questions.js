@@ -120,6 +120,7 @@ const QuestionPage = () => {
                       handleClick={updateCurrentQuestions}
                       index={i}
                       isAnswered={playerAnswersCache[i].selected}
+                      key={`top_${i}`}
                       number={i + 1}
                       selected={currentQuestionIndex === i}
                     />
