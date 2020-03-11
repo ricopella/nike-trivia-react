@@ -7,4 +7,4 @@
 export default playerAnswersCache =>
   playerAnswersCache
     .map((x, i) => (x.correct ? 1 : 0))
-    .reduce((accumulator, currentValue) => accumulator + currentValue);
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);

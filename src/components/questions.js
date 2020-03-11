@@ -9,6 +9,14 @@ import setUsersScore from "../utils/setUsersScore";
 import questions from "../data/questions";
 import Timer from "./timer";
 import FinalScore from "./finalScore";
+import { motion } from "framer-motion";
+import {
+  staggerParentVarients,
+  staggerChildLeftVarients,
+  staggerChildRightVarients
+} from "../utils/animations";
+
+const TIMER_DURATION = 1000 * 60;
 
 const QuestionPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -17,20 +25,20 @@ const QuestionPage = () => {
   const [playerAnswersCache, setPlayersAnswersCache] = useState(() =>
     createPlayerAnswerCache()
   );
-  const [isTimerStarted, setIsTierStarted] = useState(false);
+  const [isTimerStarted, setIsTimerStarted] = useState(false);
 
   useEffect(() => {
-    setIsTierStarted(true);
+    setIsTimerStarted(true);
 
     const intervalId = setInterval(() => {
-      setIsTierStarted(false);
-    }, 1000 * 60);
+      setIsTimerStarted(false);
+    }, TIMER_DURATION);
 
     return () => clearInterval(intervalId);
   }, []);
 
   const updateScore = async () => {
-    const [updatedCache, answeredCount] = setUsersScore(
+    const [updatedCache, answeredCount] = await setUsersScore(
       playerAnswersCache,
       currentSelectedAnswer,
       currentQuestionIndex
@@ -39,12 +47,12 @@ const QuestionPage = () => {
     setPlayersAnswersCache(updatedCache);
 
     if (
-      answeredCount === playerAnswersCache.length ||
-      currentQuestionIndex >= playerAnswersCache.length - 1
+      answeredCount === updatedCache.length ||
+      currentQuestionIndex >= updatedCache.length - 1
     ) {
-      const finalScore = sumPlayerScore(playerAnswersCache);
+      const finalScore = sumPlayerScore(updatedCache);
       setFinalScore(finalScore);
-      setIsTierStarted(false);
+      setIsTimerStarted(false);
     }
 
     setCurrentSelectedAnswer(null);
@@ -82,7 +90,7 @@ const QuestionPage = () => {
     setCurrentSelectedAnswer(null);
     setFinalScore(null);
     setPlayersAnswersCache(createPlayerAnswerCache());
-    setIsTierStarted(true);
+    setIsTimerStarted(true);
   };
 
   const renderContent = () => {
@@ -97,20 +105,27 @@ const QuestionPage = () => {
         <>
           {isTimerStarted ? <Timer /> : <div />}
           <div className="gameContainer">
-            <div className="questionsQueueContainer">
+            <motion.div
+              className="questionsQueueContainer"
+              {...staggerParentVarients}
+            >
               {questions
                 .filter((x, i) => i < 5)
                 .map((x, i) => (
-                  <ShoeBox
-                    handleClick={updateCurrentQuestions}
-                    index={i}
-                    isAnswered={playerAnswersCache[i].selected}
+                  <motion.div
+                    variants={staggerChildLeftVarients}
                     key={`top_${i}`}
-                    number={i + 1}
-                    selected={currentQuestionIndex === i}
-                  />
+                  >
+                    <ShoeBox
+                      handleClick={updateCurrentQuestions}
+                      index={i}
+                      isAnswered={playerAnswersCache[i].selected}
+                      number={i + 1}
+                      selected={currentQuestionIndex === i}
+                    />
+                  </motion.div>
                 ))}
-            </div>
+            </motion.div>
             <Card>
               <div className="questionWrapper">
                 {questions[currentQuestionIndex] ? (
@@ -124,36 +139,40 @@ const QuestionPage = () => {
                 ) : null}
               </div>
             </Card>
-            <div className="questionsQueueContainer">
+            <motion.div
+              className="questionsQueueContainer"
+              {...staggerParentVarients}
+            >
               {questions
                 .filter((x, i) => i >= 5)
                 .map((x, i) => (
-                  <ShoeBox
-                    handleClick={updateCurrentQuestions}
-                    index={i + 5}
-                    isAnswered={playerAnswersCache[i + 5].selected}
+                  <motion.div
+                    variants={staggerChildRightVarients}
                     key={`bottom_${i}`}
-                    number={i + 1 + 5}
-                    selected={currentQuestionIndex === i + 5}
-                  />
+                  >
+                    <ShoeBox
+                      handleClick={updateCurrentQuestions}
+                      index={i + 5}
+                      isAnswered={playerAnswersCache[i + 5].selected}
+                      number={i + 1 + 5}
+                      selected={currentQuestionIndex === i + 5}
+                    />
+                  </motion.div>
                 ))}
-            </div>
+            </motion.div>
           </div>
         </>
       );
     } else {
       return (
         <FinalScore
-          score={
-            !Number.isNaN(finalScore) && finalScore > 0 ? finalScore - 1 : 0
-          }
+          score={!Number.isNaN(finalScore) && finalScore > 0 ? finalScore : 0}
           restartGame={handleResetart}
         />
       );
     }
   };
 
-  // TODO: add animation
   return <div className="gameWrapper">{renderContent()}</div>;
 };
 

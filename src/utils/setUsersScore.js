@@ -8,9 +8,10 @@ const setUsersScore = (
   const answersClone = [...playersAnswers];
 
   answersClone[currentQuestionIndex] = {
-    correct: currentSelectedAnswer
-      ? questions[currentQuestionIndex].correct === currentSelectedAnswer
-      : null,
+    correct:
+      typeof currentSelectedAnswer === "number"
+        ? questions[currentQuestionIndex].correct === currentSelectedAnswer
+        : null,
     selected: currentSelectedAnswer
   };
 
