@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
+import { motion } from "framer-motion";
+import { slideDownFadeInOptions } from "../utils/animations";
 
 const TIMER_SECONDS = 60;
 
@@ -15,12 +17,14 @@ const Timer = () => {
   }, [timeLeft]);
 
   return (
-    <div className="timerWrapper">
-      <div className="timeHeading">Time Remaining</div>
-      <div className={`timeValue ${timeLeft <= 10 ? "alert" : ""}`}>
-        {timeLeft}
+    <motion.div {...slideDownFadeInOptions}>
+      <div className="timerWrapper">
+        <div className="timeHeading">Time Remaining</div>
+        <div className={`timeValue ${timeLeft <= 10 ? "alert" : ""}`}>
+          {timeLeft}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
